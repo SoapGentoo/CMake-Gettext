@@ -68,6 +68,9 @@
 # add the update-po and update-gmo targets, the actual files that need to
 # depend on this will be added as we go
 
+# Adhere to GNU filesystem layout conventions
+include(GNUInstallDirs)
+
 if (DEFINED GettextTranslate_ALL)
   set(_addToALL "ALL")
 endif()
@@ -271,7 +274,7 @@ macro(GettextTranslate)
     add_dependencies(${PO_TARGET} ${MAKEVAR_DOMAIN}.pot-update)
 
     install(FILES ${GMO_FILE_NAME} DESTINATION
-      ${LOCALEDIR}/${lang}/LC_MESSAGES
+      ${CMAKE_INSTALL_LOCALEDIR}/${lang}/LC_MESSAGES
       RENAME ${MAKEVAR_DOMAIN}.mo
     )
 
